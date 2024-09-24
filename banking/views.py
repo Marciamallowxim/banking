@@ -151,7 +151,7 @@ def transaction_history(request):
 def customer_support(request):
     return render(request, 'customer_support.html', {
         'support_email': 'suntrustsupporrrt@gmail.com',
-        'support_phone': '+1234567890',
+        'support_phone': '+15859106329',
         'support_hours': 'Mon-Fri 9am-6pm'
     })
 
