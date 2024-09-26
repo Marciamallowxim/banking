@@ -30,6 +30,7 @@
         display: flex;
         min-height: 100vh;
         background-color: #ebebeb;
+        overflow: hidden;
         
       }
 
@@ -38,12 +39,11 @@
         width: 100%;
         margin: 0;
         overflow: hidden;
-
       }
 
       /* General Sidebar Styling */
       .sidebar {
-        width: 20%;
+        max-width: 100%;
         background: #292d36;
         color: #fff;
         display: flex;
@@ -463,67 +463,62 @@ header .bx-menu{
 .close-btn{
   display: none;
 }
-@media screen and (max-width: 320px) {
-  header .bx-menu{
-    left: 10px;
-  }
 
-}
 @media screen and (max-width: 375px) {
-  header .bx-menu{
-    left: 15px;
-  }
 
 }
 @media screen and (max-width: 550px) {
-  header .bx-menu{
-    left: 15px;
-  }
+
 
 }
-      @media screen and (max-width: 850px) {
-        header {
+
+ @media screen and (max-width: 850px) {
+  header {
   display: flex;
 }
 
 .sidebar {
-  width: 0;
-  position: fixed;
-  top: 0;
-  left: -50px;
-  padding-left: 30px;
-  height: 100%;
-  background: #292d36;
-  color: #fff;
-  overflow-x: hidden;
-  z-index: 1000;
-
-  transition: width 0.3s ease;
+display: none;
+padding: 0;
 }
 
 .sidebar img {
-  max-width: 80%;
-  padding: 20px;
-  height: 40px;
-  margin-left: 15px;
+  display: flex;
+  width: 70%;
+  max-width: 70%;
+  margin-left: 0;
+  align-self: center;
+  height: 30px;
 }
 
 /* Sidebar open state */
 .open-sidebar {
-  width: 100%;
-  margin-left: 30px;
-  margin-bottom: 10px;
-  /* Sidebar takes 100% of the screen width */
+width: 100%;
+height: 100%;
+position: absolute;
+display: flex;
+flex-direction: column;
+gap: 15px;
+z-index: 1001;
+overflow: hidden;
+transition: transform 1s ease;
+}
+
+.sidebar .icon-box{
+  position: relative;
+  width: 90%;
+  max-width: 90%;
+  padding: 0 20px;
 }
 
 .close-btn {
   position: absolute;
   display: block;
-  top: 45px;
-  right: 40px;
+  top: 33px;
+  right: 15px;
   background-color: transparent;
   border: none;
-  font-size: 24px;
+  font-size: 20px;
   color: white;
   cursor: pointer;
 }
@@ -534,8 +529,25 @@ header .bx-menu{
   .box5{
     margin-top: 20px;
     margin-bottom: 20px;
+    padding: 0;
   }
-
+  .box4 h4, .transaction-card h1{
+    font-size: 18px;
+    color: #5b2a9b;
+  }
+  .box4 h5{
+    font-size: 14px;
+  }
+  .box4 .account-number h5{
+    color: #5b2a9b;
+    font-size: 12px;
+  }
+.box4 .account-number span{
+  font-size: 18px;
+}
+.box4 span{
+  font-size: 12px;
+}
   .content {
     width: 100%;
     max-width: 100%;
@@ -553,7 +565,6 @@ header .bx-menu{
   .account-balance{
     width: 100%;
     padding: auto;
-    margin-left: -20px;
     background: #FFFFFF;
 
   }
@@ -564,15 +575,45 @@ header .bx-menu{
         justify-content: center;
         max-width: 100%;
   }
+  .user-details h3{
+  font-size: 18px;
+  }
+
   .account-grid{
     margin-bottom: 20px;
   }
   .sidebar .sign-out {
-    width: 360px;
-    margin-bottom: 25px;
-    align-self: center  ;
+    display: flex;
+    width: 250px;
+    height: 20px;
+    position: relative;
+    align-self: center;
+    justify-content: center;
+    border: 2px solid white;
 
   }
+  header img{
+    height: 30px;
+    margin-left: 10px;
+  }
+  header .bx-menu{
+    font-size: 20px;
+    top: 26px;
+    left: 15px;
+
+  }
+  .account-balance .bx-wallet{
+    font-size: 18px;
+  }
+  .account-balance .total-balance span{
+    font-size: 18px;
+  }
+  .transaction-table th {
+        font-size: 16px;
+      }
+  .transaction-table td {
+        font-size: 12px;
+      }
 }
 
 
@@ -582,7 +623,6 @@ header .bx-menu{
   }
   .sidebar img{
     max-width: 100%;
-    margin-left: -30px;
   }
   .account-balance{
     width: 90%;
@@ -672,37 +712,34 @@ header .bx-menu{
 
 
 }
-
     </style>
   </head>
   <body>
-    <div class="main-container">
-      <div class="sidebar">
-        <div class="top-section">
-          <img
-            src="../static/sun-trust-bank-high-resolution-logo-transparent.png"
-            alt="Sun trust Bank Logo"
-          />
-          <div class="icon-box">
-            <a href="{% url 'dashboard' %}">
-              <i class="bx bxs-dashboard"></i> Dashboard
-            </a>
-            <a href="{% url 'transfer_funds' %}">
-              <i class="bx bx-transfer"></i> Transfer Funds
-            </a>
-            <a href="{% url 'transaction_history' %}">
-              <i class="bx bx-history"></i> Transaction History
-            </a>
-            <a href="{% url 'customer_support' %}">
-              <i class="bx bx-support"></i> Customer Support
-            </a>
-          </div>
+    <div class="sidebar">
+      <div class="top-section">
+        <img
+          src="../static/sun-trust-bank-high-resolution-logo-transparent.png"
+          alt="Sun trust Bank Logo"
+        />
+        <div class="icon-box">
+          <a href="{% url 'dashboard' %}">
+            <i class="bx bxs-dashboard"></i> Dashboard
+          </a>
+          <a href="{% url 'transfer_funds' %}">
+            <i class="bx bx-transfer"></i> Transfer Funds
+          </a>
+          <a href="{% url 'transaction_history' %}">
+            <i class="bx bx-history"></i> Transaction History
+          </a>
+          <a href="{% url 'customer_support' %}">
+            <i class="bx bx-support"></i> Customer Support
+          </a>
         </div>
-        <a href="{% url 'logout' %}" class="sign-out"
-          ><i style="margin-right: 5px" class="bx bx-exit"></i>Sign Out</a
-        >
       </div>
-
+      <a href="{% url 'logout' %}" class="sign-out"
+        ><i style="margin-right: 5px" class="bx bx-exit"></i>Sign Out</a>
+    </div>
+    <div class="main-container">
       <div class="content">
         <header>
           <i class='bx bx-menu' id="menu-toggle"></i>
@@ -718,8 +755,8 @@ header .bx-menu{
               <div class="account-balance">
                 <i class="bx bx-wallet"></i>
                 <div class="total-balance">
-                  <span class="total">Total Balance</span>
                   <span>${{ account.balance }}</span>
+                  <span style="font-size: 12px; color: black; font-weight: 700;">Total Balance</span>
                 </div>
               </div>
             </div>
