@@ -40,6 +40,7 @@
         gap: 20px;
         min-width: 55%;
         max-width: 80%;
+        z-index: 101;
       }
 
       h2 {
@@ -48,6 +49,7 @@
         margin-bottom: 20px;
       }
 
+    
       .form-group {
         margin-bottom: 15px;
       }
@@ -55,7 +57,7 @@
         display: flex;
         color: #757575;
         width: 100%;
-        height: fit-content;
+        height: 40px;
         position: relative;
         font-size: 1rem;
         min-width: 100px;
@@ -209,14 +211,64 @@
         justify-content: center;
         letter-spacing: 0.2px;
       }
-      @media (max-width: 767px) {
+      @media (max-width: 850px) {
         .illustration-section {
-          display: none !important;
+          position: absolute;
+          width: 100%;
         }
-
+        .slide-text h2 {
+        display: none;
+      }
+        .slide-text p {
+        display: none;
+      }
+      .formBox img{
+       z-index: 100;
+      margin-bottom: 20px;
+      }
         .rightPanel {
-          width: 100% !important;
+          width: 100% !important; /* Ensure the right panel takes the full width */
         }
+        .slide:nth-child(1),
+        .slide:nth-child(2),
+        .slide:nth-child(3){
+          filter: blur(7px);
+        }
+        form label{
+          color: black;
+          font-size: 16px;
+        }
+        form .emailBox .emailInputBox,
+      form .passwordBox .passwordInputBox {
+        width: 100%;
+        height: 20px;
+        min-width: 200px;
+      }
+   
+      .formBox {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        min-width: 90%;
+        max-width: 90%;
+        z-index: 101;
+      }
+      .nav-dot {
+        display: none;
+      }
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 700;
+        height: 20px;
+        padding: 20px;
+        margin-top: 10px;
+      }
+
+
       }
     </style>
   </head>
