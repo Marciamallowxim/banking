@@ -20,6 +20,12 @@
         background-color: #ebebeb;
         overflow: hidden;
       }
+      .main-container {
+        display: flex;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
       .sidebar {
         width: 20%;
         background: #292d36;
@@ -81,7 +87,6 @@
 
       .content {
         flex: 1;
-        max-width: 80%;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
@@ -253,6 +258,8 @@
         border-radius: 4px;
         cursor: pointer;
         max-width: 30%;
+        display: flex;
+        justify-content: center;
         align-self: center;
       }
 
@@ -287,152 +294,196 @@
         display: none;
       }
 
-      @media screen and (max-width: 320px) {
-        header .bx-menu {
-          left: 10px;
-        }
-      }
-      @media screen and (max-width: 375px) {
-        header .bx-menu {
-          left: 15px;
-        }
-      }
-      @media screen and (max-width: 550px) {
-        header .bx-menu {
-          left: 15px;
-        }
-      }
 
       @media screen and (max-width: 1024px) {
-        body {
-          max-height: 100vh;
-        }
-        .sidebar img {
-          max-width: 100%;
-          margin-left: -30px;
-        }
+     
       }
 
       @media screen and (max-width: 850px) {
         header {
-          display: flex;
-        }
+  display: flex;
+  padding: 0;
+}
 
-        .sidebar {
-          width: 0;
-          position: fixed;
-          top: 0;
-          left: -50px;
-          padding-left: 30px;
-          height: 100%;
-          background: #292d36;
-          color: #fff;
-          overflow-x: hidden;
-          z-index: 1000;
-          transition: width 0.3s ease;
-        }
+.sidebar {
+display: none;
+padding: 0;
+}
 
-        .sidebar img {
-          max-width: 80%;
-          padding: 20px;
-          height: 40px;
-        }
+.sidebar img {
+  display: flex;
+  width: 70%;
+  max-width: 70%;
+  margin-left: 0;
+  align-self: center;
+  height: 30px;
+}
 
-        /* Sidebar open state */
-        .open-sidebar {
-          width: 100%;
-          margin-left: 30px;
-          margin-bottom: 10px;
-          /* Sidebar takes 100% of the screen width */
-        }
+/* Sidebar open state */
+.open-sidebar {
+width: 100%;
+height: 100%;
+position: absolute;
+display: flex;
+flex-direction: column;
+gap: 15px;
+z-index: 1001;
+overflow: hidden;
+transition: transform 1s ease;
+}
 
-        .close-btn {
-          position: absolute;
-          display: block;
-          top: 45px;
-          right: 40px;
-          background-color: transparent;
-          border: none;
-          font-size: 24px;
-          color: white;
-          cursor: pointer;
-        }
+.sidebar .icon-box{
+  position: relative;
+  width: 90%;
+  max-width: 90%;
+  padding: 0 20px;
+}
+
+.close-btn {
+  position: absolute;
+  display: block;
+  top: 33px;
+  right: 15px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+.sidebar .sign-out {
+    display: flex;
+    width: 250px;
+    height: 20px;
+    position: relative;
+    align-self: center;
+    justify-content: center;
+    border: 2px solid white;
+
+  }
+  header img{
+    height: 30px;
+    margin-left: 10px;
+  }
+  header .bx-menu{
+    font-size: 20px;
+    top: 15px;
+    left: 15px;
+  }
         .content {
           width: 100%;
-          max-width: 100%;
         }
 
         .payment-transfer {
           margin-top: 20px;
+
+        }
+        .payment-box{
+          display: flex;
+          align-items: flex-start;
+          padding: 0;
+          margin-top: 20px;
+
+        }
+
+        .payment-box .payment-transfer h2,
+        .payment-box .transfer-details h2 {
+        font-size: 18px;
+        color: #5b2a9b;
+        }
+        .payment-box .payment-transfer span,
+        .payment-box .transfer-details span,
+        .transfer-note .text span{
+        font-size: 12px;
         }
         .payment-box .payment-transfer,
         .payment-box .transfer-details {
           max-width: 100%;
-        }
+          border: 1px solid balck;
 
+        }
+        span{
+  font-size: 12px;
+        }
+        .text-box textarea{
+          width: 120px;
+          height: 100px;
+          margin-top: 20px;
+        }
         .payment-box .select-bank,
         .payment-box .transfer-note {
           max-width: 100%;
+
         }
         form {
           max-width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        .input-box label{
+          font-size: 12px;
+          text-align: left;
         }
         .payment-box p {
           max-width: 100%;
         }
+        .transfer-note {
+        gap: 0;
+      }
       }
     </style>
   </head>
-  <body>
-    <div class="sidebar">
-      <div class="top-section">
-        <img
-          src="../static/sun-trust-bank-high-resolution-logo-transparent.png"
-          alt="Sun trust Bank Logo"
-        />
-        <div class="icon-box">
-          <a href="{% url 'dashboard' %}">
-            <i class="bx bxs-dashboard"></i> Dashboard
-          </a>
-          <a href="{% url 'transfer_funds' %}">
-            <i class="bx bx-transfer"></i> Transfer Funds
-          </a>
-          <a href="{% url 'transaction_history' %}">
-            <i class="bx bx-history"></i> Transaction History
-          </a>
-          <a href="{% url 'customer_support' %}">
-            <i class="bx bx-support"></i> Customer Support
-          </a>
-        </div>
-      </div>
-      <a href="{% url 'logout' %}" class="sign-out"
-        ><i style="margin-right: 5px" class="bx bx-exit"></i>Sign Out</a
-      >
-    </div>
-    <header>
-      <i class="bx bx-menu" id="menu-toggle"></i>
+  <div class="sidebar">
+    <div class="top-section">
       <img
         src="../static/sun-trust-bank-high-resolution-logo-transparent.png"
         alt="Sun trust Bank Logo"
       />
-    </header>
-    <div class="content">
-      <div class="payment-box">
-        <div class="payment-transfer">
-          <h2 style="color: #5b2a9b">Payment Transfer</h2>
-          <span
-            >Please provide any specific details or notes related to the payment
-            transfer</span
-          >
-        </div>
-        <div class="transfer-details">
-          <h2 style="color: #5b2a9b">Transfer details</h2>
-          <span style="margin-bottom: 15px">Enter your transfer details</span>
+      <div class="icon-box">
+        <a href="{% url 'dashboard' %}">
+          <i class="bx bxs-dashboard"></i> Dashboard
+        </a>
+        <a href="{% url 'transfer_funds' %}">
+          <i class="bx bx-transfer"></i> Transfer Funds
+        </a>
+        <a href="{% url 'transaction_history' %}">
+          <i class="bx bx-history"></i> Transaction History
+        </a>
+        <a href="{% url 'customer_support' %}">
+          <i class="bx bx-support"></i> Customer Support
+        </a>
+      </div>
+    </div>
+    <a href="{% url 'logout' %}" class="sign-out"
+      ><i style="margin-right: 5px" class="bx bx-exit"></i>Sign Out</a
+    >
+  </div>
+  <body>
+    <div class="main-container">
+      <header>
+        <i class="bx bx-menu" id="menu-toggle"></i>
+        <img
+          src="../static/sun-trust-bank-high-resolution-logo-transparent.png"
+          alt="Sun trust Bank Logo"
+        />
+      </header>
+      <div class="content">
+        <div class="payment-box">
+          <div class="payment-transfer">
+            <h2>Payment Transfer</h2>
+            <span
+              >Please provide any specific details or notes related to the payment
+              transfer</span
+            >
+          </div>
+          <div class="transfer-details">
+            <h2>Transfer details</h2>
+            <span >Enter your transfer details</span>
+          </div>
         </div>
         <div class="transfer-note">
           <div class="text">
-            <p style="font-weight: 900">Transfer Note (Optional)</p>
-            <p>
+            <p style="font-weight: 900; font-size: 18px; width: 200px;">Transfer Note (Optional)</p>
+            <p style="color: black;font-size: 12px; width: 120px;">
               Please provide any additional information or instructions related
               to the transfer
             </p>
@@ -441,74 +492,77 @@
             <textarea name="notes" id=""></textarea>
           </div>
         </div>
-      </div>
-      <div class="payment-bank" style="margin-top: -20px">
-        <p style="font-weight: 900; color: black">Bank Account Details</p>
-        <span style="color: black"
-          >Enter the bank account details of the receipent</span
-        >
-      </div>
-      
-      {% if error %}
-      <p style="color: red">{{ error }}</p>
-      {% endif %} {% if success %}
-      <p style="color: green">{{ success }}</p>
-      {% endif %}
-
-      <form method="post">
-        {% csrf_token %}
-        <div class="input-box">
-          <label style="margin-left: -16px; margin-right: 18px" for="amount"
-            >Amount:</label
+        <div class="payment-bank" style="margin-top: -20px">
+          <p style="font-weight: 900;         color: #5b2a9b;
+">Bank Account Details</p>
+          <span style="color: black"
+            >Enter the bank account details of the receipent</span
           >
-          <input type="number" id="amount" name="amount" required /><br /><br />
         </div>
-
-        <div class="input-box">
-          <label for="receiver_bank">Receiver's Bank:</label>
-          <input
-            type="text"
-            id="receiver_bank"
-            name="receiver_bank"
-            required
-          /><br /><br />
-        </div>
-
-        <div class="input-box">
-          <label for="receiver_account_number"
-            >Receiver's Account Number:</label
-          >
-          <input
-            type="text"
-            id="receiver_account_number"
-            name="receiver_account_number"
-            required
-          /><br /><br />
-        </div>
-
-        <div class="input-box">
-          <label for="receiver_name">Receiver's Name:</label>
-          <input
-            type="text"
-            id="receiver_name"
-            name="receiver_name"
-            required
-          /><br /><br />
-        </div>
-
-        <div class="input-box">
-          <label for="pin">PIN:</label>
-          <input
-            type="password"
-            id="pin"
-            name="pin"
-            maxlength="4"
-            required
-          /><br /><br />
-        </div>
-        <button type="submit">Transfer</button>
-      </form>
+        
+        {% if error %}
+        <p style="color: red">{{ error }}</p>
+        {% endif %} {% if success %}
+        <p style="color: green">{{ success }}</p>
+        {% endif %}
+  
+        <form method="post">
+          {% csrf_token %}
+          <div class="input-box">
+            <label for="amount"
+              >Amount:</label
+            >
+            <input type="number" id="amount" name="amount" required /><br /><br />
+          </div>
+  
+          <div class="input-box">
+            <label for="receiver_bank">Receiver's Bank:</label>
+            <input
+              type="text"
+              id="receiver_bank"
+              name="receiver_bank"
+              required
+            /><br /><br />
+          </div>
+  
+          <div class="input-box">
+            <label for="receiver_account_number"
+              >Receiver's Account Number:</label
+            >
+            <input
+              type="text"
+              id="receiver_account_number"
+              name="receiver_account_number"
+              required
+            /><br /><br />
+          </div>
+  
+          <div class="input-box">
+            <label for="receiver_name">Receiver's Name:</label>
+            <input
+              type="text"
+              id="receiver_name"
+              name="receiver_name"
+              required
+            /><br /><br />
+          </div>
+  
+          <div class="input-box">
+            <label for="pin">PIN:</label>
+            <input
+              type="password"
+              id="pin"
+              name="pin"
+              maxlength="4"
+              required
+            /><br /><br />
+          </div>
+          <button type="submit">Transfer</button>
+        </form>
+       
+      </div>
     </div>
+    
     <script src="../static/script.js"></script>
   </body>
 </html>
