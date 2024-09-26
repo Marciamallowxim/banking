@@ -225,96 +225,97 @@ header .bx-menu{
 }
 
 @media screen and (max-width: 850px) {
-        header {
+  header {
   display: flex;
 }
 
 .sidebar {
-  width: 0;
-  position: fixed;
-  top: 0;
-  left: -50px;
-  padding-left: 30px;
-  height: 100%;
-  background: #292d36;
-  color: #fff;
-  overflow-x: hidden;
-  z-index: 1000;
-  transition: width 0.3s ease;
+display: none;
+padding: 0;
 }
 
-.sidebar img {
-  max-width: 80%;
-  padding: 20px;
-  height: 40px;
+.sidebar .top-section img {
+  display: flex;
+  width: 70%;
+  max-width: 70%;
+  margin-left: 10px;
+  align-self: center;
+  height: 30px;
 }
 
 /* Sidebar open state */
 .open-sidebar {
-  width: 100%;
-  margin-left: 30px;
-  margin-bottom: 10px;
-  /* Sidebar takes 100% of the screen width */
+width: 100%;
+height: 100%;
+position: absolute;
+display: flex;
+flex-direction: column;
+gap: 15px;
+z-index: 1001;
+overflow: hidden;
+transition: transform 1s ease;
+}
+
+.sidebar .icon-box{
+  position: relative;
+  width: 90%;
+  max-width: 90%;
+  padding: 0 20px;
 }
 
 .close-btn {
   position: absolute;
   display: block;
-  top: 45px;
-  right: 40px;
+  top: 33px;
+  right: 15px;
   background-color: transparent;
   border: none;
-  font-size: 24px;
+  font-size: 20px;
   color: white;
   cursor: pointer;
 }
-
 .sidebar .sign-out {
-    width: 360px;
-    margin-bottom: 25px;
-    align-self: center  ;
+    display: flex;
+    width: 250px;
+    height: 20px;
+    position: relative;
+    align-self: center;
+    justify-content: center;
+    border: 2px solid white;
+
+  }
+  header img{
+    height: 30px;
+    margin-left: 10px;
+  }
+  header .bx-menu{
+    font-size: 20px;
+    top: 26px;
+    left: 15px;
 
   }
   h1 {
       margin-top: 80px;
+      font-size: 18px;
+      }
+     .transaction-table td{
+        font-size: 12px;
+      }
+     .transaction-table th{
+        font-size: 16px;
+      }
+      .transaction-table th,
+      .transaction-table td {
+        padding: 5px;
       }
 
-      .transaction-table {
+      table {
       border-radius: 10px;
-      max-width: 90%;
+      max-width: 100%;
       
       }
 }
 
-@media screen and (max-width: 320px) {
-  header .bx-menu{
-    left: 10px;
-  }
-   .transaction-table {
-      border-radius: 10px;
-      max-width: 90%;
-      
-      }
-
-}
-@media screen and (max-width: 375px) {
-  header .bx-menu{
-    left: 15px;
-  }
-  
-
-}
-@media screen and (max-width: 550px) {
-  header .bx-menu{
-    left: 15px;
-  }
-  table .transaction-table{
-      border-radius: 10px;
-      width: 200px;
-      
-      }
-
-}
 @media screen and (max-width: 1024px) {
   body{
     max-height: 100vh;
@@ -376,7 +377,7 @@ header .bx-menu{
             <th>Date</th>
             <th>Description</th>
             <th>Amount</th>
-            <th>Reference ID</th>
+            <!-- <th>Reference ID</th> -->
           </tr>
         </thead>
         <tbody>
@@ -385,7 +386,7 @@ header .bx-menu{
             <td>{{ transaction.date }}</td>
             <td>{{ transaction.description }}</td>
             <td>${{ transaction.amount }}</td>
-            <td>{{ transaction.reference_id }}</td>
+            <!-- <td>{{ transaction.reference_id }}</td> -->
           </tr>
           {% empty %}
           <tr>
