@@ -4,7 +4,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Trust Bank</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap"
+      rel="stylesheet"
+    />
+    <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+
+    <title>Banking App Interface</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -16,6 +27,11 @@
       .container {
         display: flex;
         min-height: 100vh;
+      }
+      .header-title {
+        font-family: "Marcellus", serif;
+        font-weight: 400;
+        font-style: normal;
       }
 
       .rightPanel {
@@ -162,7 +178,7 @@
       }
 
       .slide:nth-child(2) {
-        background-image: url("{% static 'accounts/images/slidePic3.jpg' %}");
+        background-image: url("{% static 'accounts/images/slidePic3New.jpg' %}");
         min-height: 100vh;
         background-size: cover;
         background-position: center;
@@ -172,7 +188,7 @@
       }
 
       .slide:nth-child(3) {
-        background-image: url("{% static 'accounts/images/slidePic2.jpg' %}");
+        background-image: url("{% static 'accounts/images/slidePic2New.jpg' %}");
         min-height: 100vh;
         background-size: cover;
         background-position: center;
@@ -246,60 +262,57 @@
           width: 100%;
         }
         .slide-text h2 {
-        display: none;
-      }
+          display: none;
+        }
         .slide-text p {
-        display: none;
-      }
-      .formBox img{
-       z-index: 100;
-      margin-bottom: 20px;
-      }
+          display: none;
+        }
+        .formBox img {
+          z-index: 100;
+          margin-bottom: 20px;
+        }
         .rightPanel {
           width: 100% !important; /* Ensure the right panel takes the full width */
         }
         .slide:nth-child(1),
         .slide:nth-child(2),
-        .slide:nth-child(3){
+        .slide:nth-child(3) {
           filter: blur(7px);
         }
-        form label{
+        form label {
           color: black;
           font-size: 16px;
         }
         form .emailBox .emailInputBox,
-      form .passwordBox .passwordInputBox {
-        width: 100%;
-        height: 20px;
-        min-width: 200px;
-      }
-   
-      .formBox {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        min-width: 90%;
-        max-width: 90%;
-        z-index: 101;
-      }
-      .nav-dot {
-        display: none;
-      }
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
-        font-size: 1rem;
-        font-weight: 700;
-        height: 20px;
-        padding: 20px;
-        margin-top: 10px;
-      }
+        form .passwordBox .passwordInputBox {
+          width: 100%;
+          height: 20px;
+          min-width: 200px;
+        }
 
-
+        .formBox {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          min-width: 90%;
+          max-width: 90%;
+          z-index: 101;
+        }
+        .nav-dot {
+          display: none;
+        }
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 10px;
+          font-size: 1rem;
+          font-weight: 700;
+          height: 20px;
+          padding: 20px;
+          margin-top: 10px;
+        }
       }
-    
     </style>
   </head>
 
@@ -345,13 +358,13 @@
       <div class="rightPanel">
         <div class="details">
           <div class="formBox">
-          <img 
-          height="50px"
-          width="100%"
-          src="../static/sunTrustBank.png" alt="">
-          <h2 style="font-size: 2rem; color: black; text-align: left">
-            Sign In
-          </h2>
+            <h1 style="font-size: 44px" class="header-title">
+              <i class='bx bxs-bank'></i>
+              SUN TRUST VAULT
+            </h1>
+            <h2 style="font-size: 2rem; color: black; text-align: left">
+              Sign In
+            </h2>
             <form method="post">
               {% csrf_token %} {% if form.non_field_errors %}
               <div class="error-message">
@@ -374,10 +387,7 @@
               </div>
 
               <div class="passwordBox">
-                <label for="password"
-                  >Password
-                  </label
-                >
+                <label for="password">Password </label>
                 <div class="passwordInputBox">
                   <input type="password" id="password" name="password" />
                 </div>
@@ -390,11 +400,7 @@
                 Don't have an account?
                 <a
                   href="{% url 'signup' %}"
-                  style="
-                    font-weight: bold;
-                    color: #8B6ECA;
-                    font-size: 1rem;
-                  "
+                  style="font-weight: bold; color: #8b6eca; font-size: 1rem"
                   >Sign Up</a
                 >
               </p>

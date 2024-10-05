@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transaction History - Sun Trust Bank</title>
     <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap"
+    rel="stylesheet"
+  />
+
+    <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
@@ -17,17 +32,30 @@
         display: flex;
         min-height: 100vh;
       }
+      .header-title {
+        font-family: "Marcellus", serif;
+        font-weight: 400;
+        font-style: normal;
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+        padding: 20px 0;
+        width: 100%;
+      }
+
       .sidebar {
-      width: 20%;
-      background: #292d36;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 20px;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
+        width: 450px;
+        background: #292d36;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        max-height: 100vh;
+        position: relative;
+      }
 
     .sidebar img {
       max-width: 80%;
@@ -338,10 +366,10 @@ transition: transform 1s ease;
   <body>
     <div class="sidebar">
       <div class="top-section">
-        <img
-            src="../static/sun-trust-bank-high-resolution-logo-transparent.png"
-            alt="Sun trust Bank Logo"
-          />
+        <div class="header-title">
+          <i class="bx bxs-bank" style="font-size: 44px" ></i>
+          <span style="font-size: 32px;">SUN TRUST VAULT</span>
+        </div>
         <div class="icon-box">
           <a href="{% url 'dashboard' %}">
             <i class="bx bxs-dashboard"></i> Dashboard
