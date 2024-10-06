@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Sun Trust Bank</title>
+    <title>Dashboard - Sun Trust Vault</title>
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
@@ -48,12 +48,10 @@
         font-weight: 400;
         font-style: normal;
         display: flex;
-        justify-content:space-around;
         align-items: center;
         padding: 20px 0;
         width: 100%;
       }
-
 
       .main-container {
         display: flex;
@@ -481,6 +479,9 @@
       .close-btn {
         display: none;
       }
+      .logo-title{
+          font-size: 32px;
+        }
 
       @media screen and (max-width: 375px) {
       }
@@ -491,12 +492,24 @@
         header {
           display: flex;
         }
-
+        .drawer{
+          font-size: 24px;
+        }
         .sidebar {
           display: none;
           padding: 0;
         }
-
+        .logo-title {
+          font-size: 24px;
+          width: 100%;
+          text-align: center;
+        }
+        .header-title{
+          display: flex;
+          gap: 45px;
+          padding: 20px 15px;
+          align-items: center;
+        }
         .sidebar img {
           display: flex;
           width: 70%;
@@ -728,8 +741,8 @@
     <div class="sidebar">
       <div class="top-section">
         <div class="header-title">
-          <i class="bx bxs-bank" style="font-size: 44px" ></i>
-          <span style="font-size: 32px;">SUN TRUST VAULT</span>
+          <i class="bx bxs-bank" style="font-size: 44px"></i>
+          <span class="drawer">SUN TRUST VAULT</span>
         </div>
 
         <div class="icon-box">
@@ -753,12 +766,11 @@
     </div>
     <div class="main-container">
       <div class="content">
-        <header>
+        <header style="color: white; gap: 2px">
           <i class="bx bx-menu" id="menu-toggle"></i>
-          <img
-            src="../static/sun-trust-bank-high-resolution-logo-transparent.png"
-            alt="Sun trust Bank Logo"
-          />
+          <div class="header-title">
+            <span class="logo-title">SUN TRUST VAULT</span>
+          </div>
         </header>
         <div class="row top-row">
           <div class="box1">

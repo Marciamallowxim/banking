@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transaction History - Sun Trust Vault</title>
     <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    rel="stylesheet"
-  />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap"
-    rel="stylesheet"
-  />
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap"
+      rel="stylesheet"
+    />
 
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -37,10 +37,12 @@
         font-weight: 400;
         font-style: normal;
         display: flex;
-        justify-content:space-around;
         align-items: center;
         padding: 20px 0;
         width: 100%;
+      }
+      .logo-title {
+        font-size: 32px;
       }
 
       .sidebar {
@@ -57,53 +59,52 @@
         position: relative;
       }
 
-    .sidebar img {
-      max-width: 80%;
-      padding: 30px;
-      height: 40px;
+      .sidebar img {
+        max-width: 80%;
+        padding: 30px;
+        height: 40px;
       }
 
+      .sidebar .top-section {
+        flex-grow: 1;
+      }
 
-    .sidebar .top-section {
-      flex-grow: 1;
-    }
+      .sidebar .icon-box a {
+        display: flex;
+        align-items: center;
+        padding: 12px 0;
+        font-size: 1rem;
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
 
-    .sidebar .icon-box a {
-      display: flex;
-      align-items: center;
-      padding: 12px 0;
-      font-size: 1rem;
-      color: #fff;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
+      .sidebar .icon-box a:hover {
+        color: rgba(139, 110, 202, 255);
+        transform: translateX(10px);
+      }
 
-    .sidebar .icon-box a:hover {
-      color: rgba(139,110,202,255);
-      transform: translateX(10px);
-    }
+      .sidebar .icon-box a i {
+        margin-right: 10px;
+        font-size: 1.5rem;
+      }
 
-    .sidebar .icon-box a i {
-      margin-right: 10px;
-      font-size: 1.5rem;
-    }
+      .sidebar .sign-out {
+        background-color: rgba(139, 110, 202, 255);
+        padding: 10px 20px;
+        text-align: center;
+        border-radius: 30px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
 
-    .sidebar .sign-out {
-      background-color: rgba(139,110,202,255);
-      padding: 10px 20px;
-      text-align: center;
-      border-radius: 30px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-
-    .sidebar .sign-out:hover {
-      background-color: rgba(139,110,202,255);
-      transform: scale(1.05);
-    }
+      .sidebar .sign-out:hover {
+        background-color: rgba(139, 110, 202, 255);
+        transform: scale(1.05);
+      }
       .content {
         flex: 1;
         padding: 20px;
@@ -113,7 +114,6 @@
         background-color: #ebebeb;
         position: relative;
         overflow-y: auto;
-
       }
       .card {
         background-color: rgba(255, 255, 255, 0.1);
@@ -129,67 +129,66 @@
         font-size: 3rem;
         color: #5b2a9b;
         margin-bottom: 20px;
-        
       }
       p {
         font-size: 1.2rem;
         margin: 10px 0;
       }
       .transaction-table {
-  width: 100%;
-  margin-top: 20px;
-  border-collapse: separate;
-  border-spacing: 0 10px; 
-  color: #2d3748;
-  background-color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        color: #2d3748;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
 
-.transaction-table th, .transaction-table td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #e2e8f0;
-  background-color: #fff;
-}
-.transaction-table tr{
-  background: #292d36;
+      .transaction-table th,
+      .transaction-table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+        background-color: #fff;
+      }
+      .transaction-table tr {
+        background: #292d36;
+      }
 
-}
+      .transaction-table th {
+        font-size: 1.1rem;
+        color: #5b2a9b;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background-color: #f7fafc;
+      }
 
-.transaction-table th {
-  font-size: 1.1rem;
-  color: #5b2a9b;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background-color: #f7fafc;
-}
+      .transaction-table td {
+        font-size: 1rem;
+        color: #4a5568;
+      }
 
-.transaction-table td {
-  font-size: 1rem;
-  color: #4a5568;
-}
+      .transaction-table tbody tr {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
 
-.transaction-table tbody tr {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+      .transaction-table tbody tr:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
 
-.transaction-table tbody tr:hover {
-  transform: scale(1.02); 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-}
+      .transaction-table tbody tr td {
+        border-bottom: none;
+      }
 
-.transaction-table tbody tr td {
-  border-bottom: none; 
-}
+      .transaction-table tbody tr:first-child td {
+        border-top: 2px solid #e2e8f0;
+      }
 
-.transaction-table tbody tr:first-child td {
-  border-top: 2px solid #e2e8f0;
-}
-
-.transaction-table tbody tr:last-child td {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
+      .transaction-table tbody tr:last-child td {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
 
       form {
         width: 100%;
@@ -222,154 +221,164 @@
         background-color: #c850c0;
       }
 
-      header{
-  position: absolute;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  padding: 10px 0 10px 10px;
-  min-width: 100%;
-  margin-bottom: 30px;
-  background: #292d36;
-display: none;
-}
-
-header img{
-  max-width: 80%;
-      padding: 30px;
-      height: 40px;
-}
-header .bx-menu{
-  font-size: 36px;
-  color: white;
-  top: 17px;
-  left: 30px;
-  position: absolute;
-}
-.close-btn{
-  display: none;
-}
-
-@media screen and (max-width: 850px) {
-  header {
-  display: flex;
-}
-
-.sidebar {
-display: none;
-padding: 0;
-}
-
-.sidebar .top-section img {
-  display: flex;
-  width: 70%;
-  max-width: 70%;
-  margin-left: 10px;
-  align-self: center;
-  height: 30px;
-}
-
-/* Sidebar open state */
-.open-sidebar {
-width: 100%;
-height: 100%;
-position: absolute;
-display: flex;
-flex-direction: column;
-gap: 15px;
-z-index: 1001;
-overflow: hidden;
-transition: transform 1s ease;
-}
-
-.sidebar .icon-box{
-  position: relative;
-  width: 90%;
-  max-width: 90%;
-  padding: 0 20px;
-}
-
-.close-btn {
-  position: absolute;
-  display: block;
-  top: 33px;
-  right: 15px;
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  color: white;
-  cursor: pointer;
-}
-.sidebar .sign-out {
-    display: flex;
-    width: 250px;
-    height: 20px;
-    position: relative;
-    align-self: center;
-    justify-content: center;
-    border: 2px solid white;
-
-  }
-  header img{
-    height: 30px;
-    margin-left: 10px;
-  }
-  header .bx-menu{
-    font-size: 20px;
-    top: 26px;
-    left: 15px;
-
-  }
-  h1 {
-      margin-top: 80px;
-      font-size: 18px;
-      }
-     .transaction-table td{
-        font-size: 12px;
-      }
-     .transaction-table th{
-        font-size: 16px;
-      }
-      .transaction-table th,
-      .transaction-table td {
-        padding: 5px;
+      header {
+        position: absolute;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        padding: 10px 0 10px 10px;
+        min-width: 100%;
+        margin-bottom: 30px;
+        background: #292d36;
+        display: none;
       }
 
-      table {
-      border-radius: 10px;
-      max-width: 100%;
-      
+      header img {
+        max-width: 80%;
+        padding: 30px;
+        height: 40px;
       }
-}
+      header .bx-menu {
+        font-size: 36px;
+        color: white;
+        top: 17px;
+        left: 30px;
+        position: absolute;
+      }
+      .close-btn {
+        display: none;
+      }
+      .logo-title {
+        font-size: 32px;
+      }
 
-@media screen and (max-width: 1024px) {
-  body{
-    max-height: 100vh;
-  }
-  .sidebar img{
-    max-width: 100%;
-    margin-left: -30px;
-  }
-  body{
-    overflow: hidden;
+      @media screen and (max-width: 850px) {
+        header {
+          display: flex;
+        }
+        .drawer {
+          font-size: 24px;
+        }
+        .logo-title {
+          font-size: 24px;
+          width: 100%;
+          text-align: center;
+        }
+        .header-title {
+          display: flex;
+          gap: 45px;
+          padding: 20px 15px;
+          align-items: center;
+        }
 
-  }
+        .sidebar {
+          display: none;
+          padding: 0;
+        }
 
-}
+        .sidebar .top-section img {
+          display: flex;
+          width: 70%;
+          max-width: 70%;
+          margin-left: 10px;
+          align-self: center;
+          height: 30px;
+        }
 
+        /* Sidebar open state */
+        .open-sidebar {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          z-index: 1001;
+          overflow: hidden;
+          transition: transform 1s ease;
+        }
 
-      
+        .sidebar .icon-box {
+          position: relative;
+          width: 90%;
+          max-width: 90%;
+          padding: 0 20px;
+        }
+
+        .close-btn {
+          position: absolute;
+          display: block;
+          top: 33px;
+          right: 15px;
+          background-color: transparent;
+          border: none;
+          font-size: 20px;
+          color: white;
+          cursor: pointer;
+        }
+        .sidebar .sign-out {
+          display: flex;
+          width: 250px;
+          height: 20px;
+          position: relative;
+          align-self: center;
+          justify-content: center;
+          border: 2px solid white;
+        }
+        header img {
+          height: 30px;
+          margin-left: 10px;
+        }
+        header .bx-menu {
+          font-size: 20px;
+          top: 26px;
+          left: 15px;
+        }
+        h1 {
+          margin-top: 80px;
+          font-size: 18px;
+        }
+        .transaction-table td {
+          font-size: 12px;
+        }
+        .transaction-table th {
+          font-size: 16px;
+        }
+        .transaction-table th,
+        .transaction-table td {
+          padding: 5px;
+        }
+
+        table {
+          border-radius: 10px;
+          max-width: 100%;
+        }
+      }
+
+      @media screen and (max-width: 1024px) {
+        body {
+          max-height: 100vh;
+        }
+        .sidebar img {
+          max-width: 100%;
+          margin-left: -30px;
+        }
+        body {
+          overflow: hidden;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="sidebar">
       <div class="top-section">
         <div class="header-title">
-          <i class="bx bxs-bank" style="font-size: 44px" ></i>
-          <span style="font-size: 32px;">SUN TRUST VAULT</span>
+          <i class="bx bxs-bank" style="font-size: 44px"></i>
+          <span class="drawer">SUN TRUST VAULT</span>
         </div>
+
         <div class="icon-box">
           <a href="{% url 'dashboard' %}">
             <i class="bx bxs-dashboard"></i> Dashboard
@@ -386,17 +395,16 @@ transition: transform 1s ease;
         </div>
       </div>
       <a href="{% url 'logout' %}" class="sign-out"
-        ><i class="bx bx-exit"></i>Sign Out</a
+        ><i style="margin-right: 5px" class="bx bx-exit"></i>Sign Out</a
       >
     </div>
-   
+
     <div class="content">
-      <header>
-        <i class='bx bx-menu' id="menu-toggle"></i>
-        <img
-          src="../static/sun-trust-bank-high-resolution-logo-transparent.png"
-          alt="Sun trust Bank Logo"
-        />
+      <header style="color: white; gap: 2px">
+        <i class="bx bx-menu" id="menu-toggle"></i>
+        <div class="header-title">
+          <span class="logo-title">SUN TRUST VAULT</span>
+        </div>
       </header>
       <h1>Transaction History</h1>
       <table class="transaction-table">
@@ -424,7 +432,7 @@ transition: transform 1s ease;
         </tbody>
       </table>
     </div>
-    
+
     <script src="../static/script.js"></script>
   </body>
 </html>

@@ -43,12 +43,13 @@
         font-weight: 400;
         font-style: normal;
         display: flex;
-        justify-content:space-around;
         align-items: center;
         padding: 20px 0;
         width: 100%;
       }
-
+      .logo-title {
+        font-size: 32px;
+      }
 
       .sidebar {
         width: 450px;
@@ -63,7 +64,6 @@
         max-height: 100vh;
         position: relative;
       }
-
 
       .sidebar img {
         max-width: 80%;
@@ -246,6 +246,20 @@
         header {
           display: flex;
         }
+        .drawer {
+          font-size: 24px;
+        }
+        .logo-title {
+          font-size: 24px;
+          width: 100%;
+          text-align: center;
+        }
+        .header-title {
+          display: flex;
+          gap: 45px;
+          padding: 20px 15px;
+          align-items: center;
+        }
 
         .sidebar {
           display: none;
@@ -334,10 +348,11 @@
     <div class="sidebar">
       <div class="top-section">
         <div class="header-title">
-            <i class="bx bxs-bank" style="font-size: 44px" ></i>
-            <span style="font-size: 32px;">SUN TRUST VAULT</span>
-          </div>
-            <div class="icon-box">
+          <i class="bx bxs-bank" style="font-size: 44px"></i>
+          <span class="drawer">SUN TRUST VAULT</span>
+        </div>
+
+        <div class="icon-box">
           <a href="{% url 'dashboard' %}">
             <i class="bx bxs-dashboard"></i> Dashboard
           </a>
@@ -353,17 +368,16 @@
         </div>
       </div>
       <a href="{% url 'logout' %}" class="sign-out"
-        ><i class="bx bx-exit"></i> Sign Out</a
+        ><i style="margin-right: 5px" class="bx bx-exit"></i>Sign Out</a
       >
     </div>
 
     <div class="content">
-      <header>
+      <header style="color: white; gap: 2px">
         <i class="bx bx-menu" id="menu-toggle"></i>
-        <img
-          src="../static/sun-trust-bank-high-resolution-logo-transparent.png"
-          alt="Sun trust Bank Logo"
-        />
+        <div class="header-title">
+          <span class="logo-title">SUN TRUST VAULT</span>
+        </div>
       </header>
       <h1>Customer Support</h1>
       <p>If you need assistance, please contact us:</p>
