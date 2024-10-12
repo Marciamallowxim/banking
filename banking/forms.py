@@ -2,13 +2,17 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
+
 class CustomSignUpForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label='Confirm Password', widget=forms.PasswordInput)
+    first_name = forms.CharField(max_length=30, required=True, help_text='First Name')
+    last_name = forms.CharField(max_length=30, required=True, help_text='Last Name')
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'email', 'first_name', 'last_name']
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
@@ -24,11 +28,12 @@ class CustomSignUpForm(forms.ModelForm):
             user.save()
         return user
 
-from django import forms
 
 class PinForm(forms.Form):
-    pin = forms.CharField(widget=forms.PasswordInput(), max_length=4, min_length=4, required=True)
-    confirm_pin = forms.CharField(widget=forms.PasswordInput(), max_length=4, min_length=4, required=True)
+    pin = forms.CharField(widget=forms.PasswordInput(),
+                          max_length=4, min_length=4, required=True)
+    confirm_pin = forms.CharField(
+        widget=forms.PasswordInput(), max_length=4, min_length=4, required=True)
 
     def clean_pin(self):
         pin = self.cleaned_data.get('pin')

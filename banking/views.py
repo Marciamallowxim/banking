@@ -245,17 +245,23 @@ def set_pin(request):
     return render(request, 'set_pin.html', {'form': form})
 
 
+
 def signup(request):
     if request.method == 'POST':
         form = CustomSignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)  # Do not commit immediately
+            user.first_name = form.cleaned_data.get('first_name')
+            user.last_name = form.cleaned_data.get('last_name')
+            user.save()  # Now save the user with first name and last name
+            
+            # Authenticate and login the user
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('verify_login_otp')  # Redirect to OTP verification
+                return redirect('verify_otp_view')  # Redirect to OTP verification
         else:
             return render(request, 'signup.html', {'form': form, 'error': form.errors})
     else:
@@ -269,9 +275,11 @@ def transfer_success_view(request):
 
 @login_required
 def verify_otp_view(request):
-    account = Account.objects.get(user=request.user)
+    account, created = Account.objects.get_or_create(
+        user=request.user,
+        defaults={'account_number': generate_unique_account_number(), 'balance': 0.00}
+    )
 
-    # Skip checking OTP verification initially, always send a new OTP on page load
     if request.method == 'POST':
         entered_otp = request.POST.get('otp')
 
@@ -291,11 +299,10 @@ def verify_otp_view(request):
 
         return redirect('dashboard')
 
-    # Always generate and send OTP immediately upon reaching this screen (same as transfer logic)
+    # Generate and send OTP as before
     otp_instance = OTP.objects.create(user=request.user)
     otp = otp_instance.generate_otp()
 
-    # Send OTP via email (copy-pasted email logic)
     subject = 'Login OTP Verification'
     message = f'Your OTP for login verification is {otp}.'
     html_message = f"""
@@ -316,5 +323,4 @@ def verify_otp_view(request):
         html_message=html_message
     )
 
-    # Render the OTP verification page (same as transfer logic)
     return render(request, 'verify_login_otp.html')
