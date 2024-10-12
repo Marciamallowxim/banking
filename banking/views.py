@@ -297,7 +297,7 @@ def verify_otp_view(request):
         account.is_otp_verified = True
         account.save()
 
-        return redirect('dashboard')
+        return redirect('set_pin')
 
     # Generate and send OTP as before
     otp_instance = OTP.objects.create(user=request.user)
