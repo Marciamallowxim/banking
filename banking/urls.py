@@ -16,4 +16,5 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('set_pin/', views.set_pin, name='set_pin'),
     path('transfer-success/', views.transfer_success_view, name='transfer_success'),
+    path('verify-otp/', views.verify_otp_view, name='verify_otp'),
 ]

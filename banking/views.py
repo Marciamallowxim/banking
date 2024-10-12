@@ -23,15 +23,66 @@ def dashboard(request):
     account, created = Account.objects.get_or_create(
         user=request.user,
         defaults={
-            # Ensure this field exists in the model
             'account_number': generate_unique_account_number(),
-            'balance': 0.00  # or any other default values required
+            'balance': 0.00
         }
     )
-    transactions = Transaction.objects.filter(
-        account=account).order_by('-date')[:5]
-    return render(request, 'dashboard.html', {'account': account, 'transactions': transactions})
 
+    # Check if the user has already verified their OTP
+    if not account.is_otp_verified:
+        if request.method == 'POST':
+            entered_otp = request.POST.get('otp')
+
+            try:
+                otp_instance = OTP.objects.get(user=request.user, otp=entered_otp, is_verified=False)
+            except OTP.DoesNotExist:
+                return render(request, 'verify_otp.html', {
+                    'error': 'Invalid OTP. Please try again.'
+                })
+
+            # Mark OTP as verified
+            otp_instance.is_verified = True
+            otp_instance.save()
+
+            # Update the account's OTP verification status
+            account.is_otp_verified = True
+            account.save()
+
+            # Now, show the dashboard after successful OTP verification
+            transactions = Transaction.objects.filter(account=account).order_by('-date')[:5]
+            return render(request, 'dashboard.html', {'account': account, 'transactions': transactions})
+
+        # If OTP hasn't been sent, generate and send one
+        if not OTP.objects.filter(user=request.user, is_verified=False).exists():
+            otp_instance = OTP.objects.create(user=request.user)
+            otp = otp_instance.generate_otp()
+
+            subject = 'Login OTP Verification'
+            message = f'Your OTP for login verification is {otp}.'
+            html_message = f"""
+                <html>
+                  <body style="text-align: center;">
+                    <p style="font-size: 24px;">Your OTP for login verification is:</p>
+                    <h2 style="color:#8b6eca; font-size: 48px;">{otp}</h2>
+                    <p>Please do not share this OTP with anyone.</p>
+                  </body>
+                </html>
+            """
+            send_mail(
+                subject,
+                message,
+                'your-email@gmail.com',  # Sender's email
+                [request.user.email],  # Recipient's email
+                fail_silently=False,
+                html_message=html_message
+            )
+
+        # Render the OTP verification page
+        return render(request, 'verify_otp.html')
+
+    # If OTP is already verified, show the dashboard
+    transactions = Transaction.objects.filter(account=account).order_by('-date')[:5]
+    return render(request, 'dashboard.html', {'account': account, 'transactions': transactions})
 
 def home(request):
     if request.user.is_authenticated:
@@ -151,7 +202,7 @@ def transaction_history(request):
 def customer_support(request):
     return render(request, 'customer_support.html', {
         'support_email': 'suntrustsupporrrt@gmail.com',
-        'support_phone': '+15859106329',
+        'support_phone': '+1234567890',
         'support_hours': 'Mon-Fri 9am-6pm'
     })
 
@@ -204,15 +255,66 @@ def signup(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('set_pin')
+                return redirect('verify_login_otp')  # Redirect to OTP verification
         else:
-            # Add this to show form errors if form is invalid
             return render(request, 'signup.html', {'form': form, 'error': form.errors})
     else:
         form = CustomSignUpForm()
 
     return render(request, 'signup.html', {'form': form})
 
-
 def transfer_success_view(request):
     return render(request, 'transfer_success.html')
+
+
+@login_required
+def verify_otp_view(request):
+    account = Account.objects.get(user=request.user)
+
+    # Skip checking OTP verification initially, always send a new OTP on page load
+    if request.method == 'POST':
+        entered_otp = request.POST.get('otp')
+
+        try:
+            # Try to fetch the unverified OTP
+            otp_instance = OTP.objects.get(user=request.user, otp=entered_otp, is_verified=False)
+        except OTP.DoesNotExist:
+            return render(request, 'verify_login_otp.html', {
+                'error': 'Invalid OTP. Please try again.'
+            })
+
+        # Mark OTP as verified and update account status
+        otp_instance.is_verified = True
+        otp_instance.save()
+        account.is_otp_verified = True
+        account.save()
+
+        return redirect('dashboard')
+
+    # Always generate and send OTP immediately upon reaching this screen (same as transfer logic)
+    otp_instance = OTP.objects.create(user=request.user)
+    otp = otp_instance.generate_otp()
+
+    # Send OTP via email (copy-pasted email logic)
+    subject = 'Login OTP Verification'
+    message = f'Your OTP for login verification is {otp}.'
+    html_message = f"""
+        <html>
+          <body style="text-align: center;">
+            <p style="font-size: 24px;">Your OTP for login verification is:</p>
+            <h2 style="color:#8b6eca; font-size: 48px;">{otp}</h2>
+            <p>Please do not share this OTP with anyone.</p>
+          </body>
+        </html>
+    """
+    send_mail(
+        subject,
+        message,
+        'your-email@gmail.com',  # Sender's email
+        [request.user.email],  # Recipient's email
+        fail_silently=False,
+        html_message=html_message
+    )
+
+    # Render the OTP verification page (same as transfer logic)
+    return render(request, 'verify_login_otp.html')
