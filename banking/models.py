@@ -12,6 +12,7 @@ class Account(models.Model):
     balance = models.DecimalField(
         max_digits=10, decimal_places=2, default=0.00)
     pin = models.CharField(max_length=4)
+    is_otp_verified = models.BooleanField(default=False)
     def __str__(self):
         return f"{self.user.username} - {self.account_number}"
 
