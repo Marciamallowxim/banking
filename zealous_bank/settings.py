@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-hg+m*$lv6htaq6t!957e3@r$&93s=%90e^#0xgg93+k7@q@=ut
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', ".vercel.app", ".now.sh", '127.0.0.1', "localhost",".com" ]
+ALLOWED_HOSTS = ['*', ".vercel.app", ".now.sh", '127.0.0.1', "localhost" ]
 
 # Application definition
 
@@ -126,7 +126,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = 'verify_otp'
+LOGIN_REDIRECT_URL = 'verify_otp_view'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
